@@ -41,7 +41,7 @@ public class CustomTenantInterceptor implements HandlerInterceptor {
         }
         SysTenantInfo tenantInfo = sysTenantService.findByTenant(tenant);
         if (tenantInfo == null) {
-            R result = R.fail(EResultCode.SUCCESS, "租户不能为空");
+            R result = R.fail(EResultCode.SUCCESS, "未获取到租户信息");
             ObjectMapper objectMapper = new ObjectMapper();
             String json = objectMapper.writeValueAsString(result);
             writeJson(response, json);

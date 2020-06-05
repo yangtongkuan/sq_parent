@@ -14,7 +14,7 @@ public class CustomWebMvcConfigurer implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
 
-        registry.addInterceptor(getCustomTenantInterceptor()).addPathPatterns("/api/tenant/v1/**");
+        registry.addInterceptor(getCustomTenantInterceptor()).addPathPatterns("/tenant/v1/**");
 
         WebMvcConfigurer.super.addInterceptors(registry);
     }

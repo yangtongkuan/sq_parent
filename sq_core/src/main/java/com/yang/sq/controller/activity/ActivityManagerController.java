@@ -1,5 +1,6 @@
 package com.yang.sq.controller.activity;
 
+import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import com.github.xiaoymin.knife4j.annotations.ApiSort;
 import com.yang.sq.api.common.result.R;
 import com.yang.sq.domain.po.activity.ActivityPo;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/tenant/v1/pri/activity/")
 @Api(tags = "活动管理接口")
-@ApiSort(3)
+@ApiSort(4)
 public class ActivityManagerController {
 
     @Autowired
@@ -30,7 +31,8 @@ public class ActivityManagerController {
 
     @PostMapping("/save")
     @ApiOperation("创建活动")
-    public R<ActivityVo> save(@RequestBody ActivityPo activityPo) {
+    @ApiOperationSupport(ignoreParameters = {"id", "delFlag", "createUserId", "createTime", "updateUserId", "updateTime"})
+    public R<ActivityVo> save(ActivityPo activityPo) {
         ActivityPo activity = activityService.saveActivity(activityPo);
         ActivityVo vo = new ActivityVo();
         BeanUtils.copyProperties(activity, vo);
